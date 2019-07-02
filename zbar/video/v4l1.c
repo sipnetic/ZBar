@@ -21,10 +21,10 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
 #endif
+#include <stdint.h>
 #ifdef HAVE_STDLIB_H
 # include <stdlib.h>
 #endif

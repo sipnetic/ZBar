@@ -23,11 +23,13 @@
 #ifndef _PROCESSOR_H_
 #define _PROCESSOR_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
 #endif
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 

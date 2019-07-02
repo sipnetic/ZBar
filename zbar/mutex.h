@@ -23,14 +23,16 @@
 #ifndef _ZBAR_MUTEX_H_
 #define _ZBAR_MUTEX_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 /* simple platform mutex abstraction
  */
 
 #if defined(_WIN32)
 
-# include <windows.h>
+#include <windows.h>
 
 # define DEBUG_LOCKS
 # ifdef DEBUG_LOCKS

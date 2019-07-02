@@ -21,7 +21,10 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <zbar.h>
 
 #ifdef DEBUG_EAN

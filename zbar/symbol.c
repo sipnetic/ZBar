@@ -21,7 +21,10 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
@@ -32,6 +35,7 @@
 const char *zbar_get_symbol_name (zbar_symbol_type_t sym)
 {
     switch(sym & ZBAR_SYMBOL) {
+#ifdef ENABLE_EAN
     case ZBAR_EAN2: return("EAN-2");
     case ZBAR_EAN5: return("EAN-5");
     case ZBAR_EAN8: return("EAN-8");
@@ -40,17 +44,35 @@ const char *zbar_get_symbol_name (zbar_symbol_type_t sym)
     case ZBAR_UPCA: return("UPC-A");
     case ZBAR_EAN13: return("EAN-13");
     case ZBAR_ISBN13: return("ISBN-13");
-    case ZBAR_COMPOSITE: return("COMPOSITE");
+#endif
+#ifdef ENABLE_I25
     case ZBAR_I25: return("I2/5");
+#endif
+#ifdef ENABLE_DATABAR
     case ZBAR_DATABAR: return("DataBar");
     case ZBAR_DATABAR_EXP: return("DataBar-Exp");
+#endif
+#ifdef ENABLE_CODABAR
     case ZBAR_CODABAR: return("Codabar");
+#endif
+#ifdef ENABLE_CODE39
     case ZBAR_CODE39: return("CODE-39");
+#endif
+#ifdef ENABLE_CODE93
     case ZBAR_CODE93: return("CODE-93");
+#endif
+#ifdef ENABLE_CODE128
     case ZBAR_CODE128: return("CODE-128");
+#endif
+#ifdef ENABLE_PDF417
     case ZBAR_PDF417: return("PDF417");
+#endif
+#ifdef ENABLE_QRCODE
     case ZBAR_QRCODE: return("QR-Code");
-    default: return("UNKNOWN");
+#endif
+    case ZBAR_PARTIAL: return "PARTIAL";
+    case ZBAR_COMPOSITE: return "COMPOSITE";
+    default: return "UNKNOWN";
     }
 }
 

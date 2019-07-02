@@ -23,22 +23,22 @@
 #ifndef _ERROR_H_
 #define _ERROR_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
 #endif
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #ifdef HAVE_ERRNO_H
-# include <errno.h>
+#include <errno.h>
 #endif
 #include <assert.h>
 
 #include <zbar.h>
 
 #ifdef _WIN32
-# include <windows.h>
+#include <windows.h>
 #endif
 
 #if __STDC_VERSION__ < 199901L

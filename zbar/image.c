@@ -21,9 +21,19 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "error.h"
 #include "image.h"
 #include "refcnt.h"
+
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#else
+#define PRIx32 "x"
+#endif
 
 zbar_image_t *zbar_image_create ()
 {

@@ -23,7 +23,10 @@
 #ifndef _DECODER_H_
 #define _DECODER_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <stdlib.h>     /* realloc */
 #include <limits.h>
 

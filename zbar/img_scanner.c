@@ -21,13 +21,13 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 #ifdef HAVE_UNISTD_H
-# include <unistd.h>
+#include <unistd.h>
 #endif
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
-#endif
+#include <stdint.h>
 #include <stdlib.h>     /* malloc, free */
 #include <string.h>     /* memcmp, memset, memcpy */
 #include <assert.h>
@@ -638,7 +638,7 @@ static inline void quiet_border (zbar_image_scanner_t *iscn)
 #define movedelta(dx, dy) do {                  \
         x += (dx);                              \
         y += (dy);                              \
-        p += (dx) + ((uintptr_t)(dy) * w);       \
+        p += (dx) + ((uintptr_t)(dy) * w);      \
     } while(0);
 
 int zbar_scan_image (zbar_image_scanner_t *iscn,

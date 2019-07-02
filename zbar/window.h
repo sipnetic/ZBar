@@ -23,10 +23,10 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
 #endif
+#include <stdint.h>
 #include <stdlib.h>
 
 #include <zbar.h>

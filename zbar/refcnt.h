@@ -23,7 +23,10 @@
 #ifndef _REFCNT_H_
 #define _REFCNT_H_
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <assert.h>
 
 #if defined(_WIN32)
