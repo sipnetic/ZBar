@@ -106,8 +106,10 @@ extern void _zbar_image_free(zbar_image_t*);
 
 #ifdef DEBUG_SVG
 extern int zbar_image_write_png(const zbar_image_t*, const char*);
+extern int zbar_write_png(const void *data, int width, int height, const char *);
 #else
 # define zbar_image_write_png(...)
+# define zbar_write_png(...)
 #endif
 
 static inline void _zbar_image_refcnt (zbar_image_t *img,

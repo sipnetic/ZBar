@@ -588,13 +588,8 @@ unsigned char *qr_binarize(const unsigned char *_img,int _width,int _height){
     }
     free(col_sums);
   }
-#if defined(QR_DEBUG)
-  {
-    FILE *fout;
-    fout=fopen("binary.png","wb");
-    image_write_png(_img,_width,_height,fout);
-    fclose(fout);
-  }
+#ifdef DEBUG_SVG
+  zbar_write_png(mask, _width, _height, "binary.png");
 #endif
   return(mask);
 }

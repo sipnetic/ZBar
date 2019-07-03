@@ -1340,7 +1340,6 @@ static int qr_img_get_bit(const unsigned char *_img,int _width,int _height,
 static void qr_finder_dump_aff_undistorted(qr_finder *_ul,qr_finder *_ur,
  qr_finder *_dl,qr_aff *_aff,const unsigned char *_img,int _width,int _height){
   unsigned char *gimg;
-  FILE          *fout;
   int            lpsz;
   int            pixel_size;
   int            dim;
@@ -1401,16 +1400,13 @@ static void qr_finder_dump_aff_undistorted(qr_finder *_ul,qr_finder *_ur,
       for(i=min;i<max;i++)gimg[i*dim+j]=0x7F;
     }
   }
-  fout=fopen("undistorted_aff.png","wb");
-  image_write_png(gimg,dim,dim,fout);
-  fclose(fout);
+  zbar_write_png(gimg, dim, dim, "undistorted_aff.png");
   free(gimg);
 }
 
 static void qr_finder_dump_hom_undistorted(qr_finder *_ul,qr_finder *_ur,
  qr_finder *_dl,qr_hom *_hom,const unsigned char *_img,int _width,int _height){
   unsigned char *gimg;
-  FILE          *fout;
   int            lpsz;
   int            pixel_size;
   int            dim;
@@ -1471,9 +1467,7 @@ static void qr_finder_dump_hom_undistorted(qr_finder *_ul,qr_finder *_ur,
       for(i=min;i<max;i++)gimg[i*dim+j]=0x7F;
     }
   }
-  fout=fopen("undistorted_hom.png","wb");
-  image_write_png(gimg,dim,dim,fout);
-  fclose(fout);
+  zbar_write_png(gimg, dim, dim, "undistorted_hom.png");
   free(gimg);
 }
 #endif
@@ -2773,7 +2767,6 @@ static void qr_sampling_grid_clear(qr_sampling_grid *_grid){
 static void qr_sampling_grid_dump(qr_sampling_grid *_grid,int _version,
  const unsigned char *_img,int _width,int _height){
   unsigned char *gimg;
-  FILE          *fout;
   int            dim;
   int            u;
   int            v;
@@ -2825,9 +2818,7 @@ static void qr_sampling_grid_dump(qr_sampling_grid *_grid,int _version,
       gimg[(i+1)*dim+j+1]=0x7F;
     }
   }
-  fout=fopen("grid.png","wb");
-  image_write_png(gimg,dim,dim,fout);
-  fclose(fout);
+  zbar_write_png(gimg, dim, dim, "grid.png");
   free(gimg);
 }
 #endif

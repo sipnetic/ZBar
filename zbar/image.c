@@ -245,6 +245,7 @@ const zbar_symbol_t *zbar_image_first_symbol (const zbar_image_t *img)
     return((img->syms) ? img->syms->head : NULL);
 }
 
+#if 0
 typedef struct zimg_hdr_s {
     uint32_t magic, format;
     uint16_t width, height;
@@ -307,27 +308,26 @@ error:
     free(filename);
     return(rc);
 }
+#endif
 
 #ifdef DEBUG_SVG
 # include <png.h>
 
-int zbar_image_write_png (const zbar_image_t *img,
-                          const char *filename)
+int zbar_write_png(const void *data, int width, int height, const char *filename)
 {
-    int rc = -1;
+    int y, rc = -1;
     FILE *file = NULL;
     png_struct *png = NULL;
     png_info *info = NULL;
     const uint8_t **rows = NULL;
 
-    rows = malloc(img->height * sizeof(*rows));
+    rows = malloc(height * sizeof(*rows));
     if(!rows)
         goto done;
 
-    rows[0] = img->data;
-    int y;
-    for(y = 1; y < img->height; y++)
-        rows[y] = rows[y - 1] + img->width;
+    rows[0] = (const uint8_t *) data;
+    for(y = 1; y < height; y++)
+        rows[y] = rows[y - 1] + width;
 
     file = fopen(filename, "wb");
     if(!file)
@@ -346,11 +346,11 @@ int zbar_image_write_png (const zbar_image_t *img,
 
     png_init_io(png, file);
     png_set_compression_level(png, 9);
-    png_set_IHDR(png, info, img->width, img->height, 8, PNG_COLOR_TYPE_GRAY,
+    png_set_IHDR(png, info, width, height, 8, PNG_COLOR_TYPE_GRAY,
                  PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT,
                  PNG_FILTER_TYPE_DEFAULT);
 
-    png_set_rows(png, info, (void*)rows);
+    png_set_rows(png, info, rows);
     png_write_png(png, info, PNG_TRANSFORM_IDENTITY, NULL);
 
     png_write_end(png,info);
@@ -359,11 +359,15 @@ int zbar_image_write_png (const zbar_image_t *img,
 done:
     if(png)
         png_destroy_write_struct(&png, &info);
-    if(rows)
-        free(rows);
+    free(rows);
     if(file)
         fclose(file);
-    return(rc);
+    return rc;
+}
+
+int zbar_image_write_png(const zbar_image_t *img, const char *filename)
+{
+    return zbar_write_png(img->data, img->width, img->height, filename);
 }
 
 #endif
