@@ -42,53 +42,39 @@ typedef enum qr_mode{
 #define QR_MODE_HAS_DATA(_mode) (!((_mode)&(_mode)-1))
 
 /*ECI may be used to signal a character encoding for the data.*/
-typedef enum qr_eci_encoding{
-  /*GLI0 is like CP437, but the encoding is reset at the beginning of each
-     structured append symbol.*/
-  QR_ECI_GLI0,
-  /*GLI1 is like ISO8859_1, but the encoding is reset at the beginning of each
-     structured append symbol.*/
-  QR_ECI_GLI1,
-  /*The remaining encodings do not reset at the start of the next structured
-     append symbol.*/
-  QR_ECI_CP437,
-  /*Western European.*/
-  QR_ECI_ISO8859_1,
-  /*Central European.*/
-  QR_ECI_ISO8859_2,
-  /*South European.*/
-  QR_ECI_ISO8859_3,
-  /*North European.*/
-  QR_ECI_ISO8859_4,
-  /*Cyrillic.*/
-  QR_ECI_ISO8859_5,
-  /*Arabic.*/
-  QR_ECI_ISO8859_6,
-  /*Greek.*/
-  QR_ECI_ISO8859_7,
-  /*Hebrew.*/
-  QR_ECI_ISO8859_8,
-  /*Turkish.*/
-  QR_ECI_ISO8859_9,
-  /*Nordic.*/
-  QR_ECI_ISO8859_10,
-  /*Thai.*/
-  QR_ECI_ISO8859_11,
-  /*There is no ISO/IEC 8859-12.*/
-  /*Baltic rim.*/
-  QR_ECI_ISO8859_13=QR_ECI_ISO8859_11+2,
-  /*Celtic.*/
-  QR_ECI_ISO8859_14,
-  /*Western European with euro.*/
-  QR_ECI_ISO8859_15,
-  /*South-Eastern European (with euro).*/
-  QR_ECI_ISO8859_16,
-  /*ECI 000019 is reserved?*/
-  /*Shift-JIS.*/
-  QR_ECI_SJIS=20,
-  /*UTF-8.*/
-  QR_ECI_UTF8=26
-}qr_eci_encoding;
+typedef enum qr_eci_encoding
+{
+  QR_ECI_GLI0       = 0, /* CP437 */
+  QR_ECI_GLI1       = 1, /* ISO8859-1 */
+  QR_ECI_CP437      = 2,
+  QR_ECI_ISO8859_1  = 3,
+  QR_ECI_ISO8859_2  = 4,
+  QR_ECI_ISO8859_3  = 5,
+  QR_ECI_ISO8859_4  = 6,
+  QR_ECI_ISO8859_5  = 7,
+  QR_ECI_ISO8859_6  = 8,
+  QR_ECI_ISO8859_7  = 9,
+  QR_ECI_ISO8859_8  = 10,
+  QR_ECI_ISO8859_9  = 11,
+  QR_ECI_ISO8859_10 = 12,
+  QR_ECI_ISO8859_11 = 13,
+  QR_ECI_ISO8859_13 = 15,
+  QR_ECI_ISO8859_14 = 16,
+  QR_ECI_ISO8859_15 = 17,
+  QR_ECI_ISO8859_16 = 18,
+  QR_ECI_SHIFT_JIS  = 20,
+  QR_ECI_CP1250     = 21,
+  QR_ECI_CP1251     = 22,
+  QR_ECI_CP1252     = 23,
+  QR_ECI_CP1256     = 24,
+  QR_ECI_UTF16_BE   = 25,
+  QR_ECI_UTF8       = 26,
+  QR_ECI_ASCII      = 27,
+  QR_ECI_BIG5       = 28,
+  QR_ECI_GB18030    = 29,
+  QR_ECI_EUC_KR     = 30,
+  QR_ECI_ASCII_170  = 170
+} qr_eci_encoding;
 
 
 /*A single unit of parsed QR code data.*/
