@@ -61,8 +61,21 @@ static inline int _zbar_refcnt (refcnt_t *cnt,
     return(rc);
 }
 
+#elif defined(__GNUC__) && defined(__GNUC_MINOR__) && __GNUC__*256 + __GNUC_MINOR__ >= 0x401
+
+typedef int refcnt_t;
+
+static inline int _zbar_refcnt(refcnt_t *cnt, int delta)
+{
+    int rc = __sync_add_and_fetch(cnt, delta);
+    assert(rc >= 0);
+    return rc;
+}
+
 #elif defined(HAVE_LIBPTHREAD)
 # include <pthread.h>
+
+#define _ZBAR_USE_LIBPTHREAD
 
 typedef int refcnt_t;
 
@@ -77,7 +90,6 @@ static inline int _zbar_refcnt (refcnt_t *cnt,
     assert(rc >= 0);
     return(rc);
 }
-
 
 #else
 
