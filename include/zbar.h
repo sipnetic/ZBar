@@ -442,7 +442,8 @@ zbar_symbol_get_components(const zbar_symbol_t *symbol);
 ZBAR_API const zbar_symbol_t*
 zbar_symbol_first_component(const zbar_symbol_t *symbol);
 
-#if 0 /* REMOVED API */
+/* REMOVED API */
+#if 0
 /** print XML symbol element representation to user result buffer.
  * @see http://zbar.sourceforge.net/2008/barcode.xsd for the schema.
  * @param symbol is the symbol to print
@@ -714,6 +715,8 @@ ZBAR_API void zbar_image_set_userdata(zbar_image_t *image,
  */
 ZBAR_API void *zbar_image_get_userdata(const zbar_image_t *image);
 
+/* REMOVED API */
+#if 0
 /** dump raw image data to a file for debug.
  * the data will be prefixed with a 16 byte header consisting of:
  *   - 4 bytes uint = 0x676d697a ("zimg")
@@ -744,9 +747,12 @@ ZBAR_API int zbar_image_write(const zbar_image_t *image,
  * @note TBD
  */
 ZBAR_API zbar_image_t *zbar_image_read(char *filename);
+#endif
 
 /*@}*/
 
+/* REMOVED API */
+#if 0
 /*------------------------------------------------------------*/
 /** @name Processor interface
  * @anchor c-processor
@@ -1174,6 +1180,7 @@ ZBAR_API int zbar_negotiate_format(zbar_video_t *video,
                                  zbar_window_t *window);
 
 /*@}*/
+#endif
 
 /*------------------------------------------------------------*/
 /** @name Image Scanner interface

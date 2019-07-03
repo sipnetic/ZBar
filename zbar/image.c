@@ -158,6 +158,7 @@ inline void zbar_image_free_data (zbar_image_t *img)
 {
     if(!img)
         return;
+#if 0
     if(img->src) {
         zbar_image_t *newimg;
         /* replace video image w/new copy */
@@ -171,7 +172,9 @@ inline void zbar_image_free_data (zbar_image_t *img)
         img->src = NULL;
         img->srcidx = -1;
     }
-    else if(img->cleanup && img->data) {
+    else
+#endif
+    if(img->cleanup && img->data) {
         if(img->cleanup != zbar_image_free_data) {
             /* using function address to detect this case is a bad idea;
              * windows link libraries add an extra layer of indirection...
