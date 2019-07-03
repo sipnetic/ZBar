@@ -126,7 +126,7 @@ int main(int argc, char **argv)
     image = zbar_image_create();
     zbar_image_set_format(image, zbar_fourcc('Y','8','0','0'));
     zbar_image_set_size(image, width, height);
-    zbar_image_set_data(image, raw, width * height, zbar_image_free_data);
+    zbar_image_set_data(image, raw, width * height, zbar_image_std_cleanup);
 
     /* scan the image for barcodes */
     n = zbar_scan_image(scanner, image);

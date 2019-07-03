@@ -154,7 +154,7 @@ void zbar_image_set_crop (zbar_image_t *img,
     img->crop_h = h;
 }
 
-inline void zbar_image_free_data (zbar_image_t *img)
+void zbar_image_std_cleanup(zbar_image_t *img)
 {
     if(!img)
         return;
@@ -174,19 +174,7 @@ inline void zbar_image_free_data (zbar_image_t *img)
     }
     else
 #endif
-    if(img->cleanup && img->data) {
-        if(img->cleanup != zbar_image_free_data) {
-            /* using function address to detect this case is a bad idea;
-             * windows link libraries add an extra layer of indirection...
-             * this works around that problem (bug #2796277)
-             */
-            zbar_image_cleanup_handler_t *cleanup = img->cleanup;
-            img->cleanup = zbar_image_free_data;
-            cleanup(img);
-        }
-        else
-            free((void*)img->data);
-    }
+    free((void *) img->data);
     img->data = NULL;
 }
 
@@ -195,7 +183,7 @@ void zbar_image_set_data (zbar_image_t *img,
                           unsigned long len,
                           zbar_image_cleanup_handler_t *cleanup)
 {
-    zbar_image_free_data(img);
+    if (img->cleanup) img->cleanup(img);
     img->data = data;
     img->datalen = len;
     img->cleanup = cleanup;
@@ -221,7 +209,7 @@ zbar_image_t *zbar_image_copy (const zbar_image_t *src)
     dst->data = malloc(src->datalen);
     assert(dst->data);
     memcpy((void*)dst->data, src->data, src->datalen);
-    dst->cleanup = zbar_image_free_data;
+    dst->cleanup = zbar_image_std_cleanup;
     return(dst);
 }
 

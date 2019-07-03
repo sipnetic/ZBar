@@ -1029,7 +1029,7 @@ zbar_image_t *zbar_image_convert_resize (const zbar_image_t *src,
 
     func = conversions[srcfmt->group][dstfmt->group].func;
 
-    dst->cleanup = zbar_image_free_data;
+    dst->cleanup = zbar_image_std_cleanup;
     func(dst, dstfmt, src, srcfmt);
     if(!dst->data) {
         /* conversion failed */

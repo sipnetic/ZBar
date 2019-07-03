@@ -702,7 +702,7 @@ ZBAR_API void zbar_image_set_data(zbar_image_t *image,
 /** built-in cleanup handler.
  * passes the image data buffer to free()
  */
-ZBAR_API void zbar_image_free_data(zbar_image_t *image);
+ZBAR_API void zbar_image_std_cleanup(zbar_image_t *image);
 
 /** associate user specified data value with an image.
  * @since 0.5

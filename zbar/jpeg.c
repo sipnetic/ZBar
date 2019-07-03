@@ -222,7 +222,7 @@ void _zbar_convert_jpeg_to_y (zbar_image_t *dst,
     if(!dst->data) {
         dst->datalen = datalen;
         dst->data = malloc(dst->datalen);
-        dst->cleanup = zbar_image_free_data;
+        dst->cleanup = zbar_image_std_cleanup;
     }
     else
         assert(datalen <= dst->datalen);
