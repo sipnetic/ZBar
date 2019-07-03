@@ -233,7 +233,7 @@ const zbar_symbol_t *zbar_symbol_first_component (const zbar_symbol_t *sym)
     return((sym && sym->syms) ? sym->syms->head : NULL);
 }
 
-
+#if 0 /* REMOVED API */
 unsigned base64_encode (char *dst,
                         const char *src,
                         unsigned srclen)
@@ -384,7 +384,7 @@ char *zbar_symbol_xml (const zbar_symbol_t *sym,
     *len = n;
     return(*buf);
 }
-
+#endif
 
 zbar_symbol_set_t *_zbar_symbol_set_create ()
 {

@@ -442,6 +442,7 @@ zbar_symbol_get_components(const zbar_symbol_t *symbol);
 ZBAR_API const zbar_symbol_t*
 zbar_symbol_first_component(const zbar_symbol_t *symbol);
 
+#if 0 /* REMOVED API */
 /** print XML symbol element representation to user result buffer.
  * @see http://zbar.sourceforge.net/2008/barcode.xsd for the schema.
  * @param symbol is the symbol to print
@@ -454,6 +455,7 @@ zbar_symbol_first_component(const zbar_symbol_t *symbol);
 ZBAR_API char *zbar_symbol_xml(const zbar_symbol_t *symbol,
                              char **buffer,
                              unsigned *buflen);
+#endif
 
 /*@}*/
 
